@@ -1,4 +1,4 @@
-This system was created to counter the notorious "The server cleared a prefix of the conversation as it grew too large." of Antigravity IDE.
+This system was created to counter the notorious "The server cleared a prefix of the conversation as it grew too large." of Antigravity IDE. Although it will likely have uses outside of Antigravity and the specific issues mentioned here, as a general Agentic work improvement measure so the Agent tracks and uses information on what it is doing more reliably.
 
 They will never fix it (Google seems to have abandoned Antigravity development; it is a fork of VS Code but it has productivity killer issues including Agent amnesia after an "The server cleared a prefix of the conversation as it grew too large." event) and it never receives client updates.
 I need to vent about killers like the lack of a 'Fork conversation' button in IDE chat, and the context erasure (by server) issue that wipes out the entire chat history for both user and Agent.
