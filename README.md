@@ -52,19 +52,33 @@ flowchart TD
 
 ---
 
-## 🚀 Quick Start (Zero Configuration, Drop-in)
+## 🎯 Recommendation: Should You Use It?
+
+Before adding this guard to your workflow, consider your project requirements:
+
+* **Recommended if:** You are working on long-running, multi-hour projects, complex refactors, or deep autonomous milestones where losing initial context leads to costly regressions and model drift.
+* **Not necessary if:** You are doing exploratory coding, single-file scripts, or fast iterative tasks where high velocity is preferred over strict verification gates.
+
+---
+
+## 🚀 Quick Start & Workspace Adoption
 
 No Antigravity IDE settings modifications are required.
 
-### Standalone Setup
-Simply copy the core files to the root of your workspace:
+### Option A: Standalone Setup (New Workspaces)
+Copy the repository's core files into your workspace root:
 - `GEMINI.md`
 - `.crash-remediation.md`
 - `.agent-state.md`
-- `.gitignore` (ignores `.agent-backup/` to keep `git status` clean)
+- Add `.agent-backup/` to your `.gitignore` to keep `git status` clean.
 
-### Existing `GEMINI.md` Projects
-If your workspace already has a `GEMINI.md`, copy the **pointer block** from the top of [`GEMINI.md`](GEMINI.md) and paste it at the very top of your existing `GEMINI.md`.
+### Option B: Adopting in an Existing Workspace
+If you already have an established project:
+1. Copy [`.crash-remediation.md`](https://raw.githubusercontent.com/Barrixar/agent-context-guard/main/.crash-remediation.md) and [`.agent-state.md`](https://raw.githubusercontent.com/Barrixar/agent-context-guard/main/.agent-state.md) to your workspace root.
+2. Add `.agent-backup/` to your `.gitignore`.
+3. Copy the header block (from `[CRITICAL_SYSTEM_LINK_START]` through `[CRITICAL_SYSTEM_LINK_END]`) from [`GEMINI.md`](https://raw.githubusercontent.com/Barrixar/agent-context-guard/main/GEMINI.md) to either:
+   - The very top of your workspace's existing `GEMINI.md`, or
+   - A dedicated rule file inside your workspace rules directory at `.agents/rules/` (e.g. `.agents/rules/context-guard.md`).
 
 ---
 
