@@ -1,18 +1,12 @@
-<!-- ==========================================================================
-     CRITICAL ORCHESTRATION LAYER: DROP-IN STATE GUARD
-     Author: Barrixar // Project: https://github.com/Barrixar/agent-context-guard
-     License: The Unlicense
+> **CRITICAL ORCHESTRATION LAYER: DROP-IN STATE GUARD**
+> **Author:** Barrixar // **Project:** [agent-context-guard](https://github.com/Barrixar/agent-context-guard) // **License:** The Unlicense
+> **Usage:** Standalone `GEMINI.md`, or copy from `[CRITICAL_SYSTEM_LINK_START]` to `[CRITICAL_SYSTEM_LINK_END]` at the top of an existing `GEMINI.md`.
 
-     USAGE INSTRUCTIONS:
-     - Standalone: Use this entire file as your workspace GEMINI.md.
-     - Existing GEMINI.md: Copy everything from [CRITICAL_SYSTEM_LINK_START] to
-       [CRITICAL_SYSTEM_LINK_END] and paste it at the very top of your file.
-     ========================================================================== -->
+---
 
-# ============================================================================
-# CRITICAL ORCHESTRATION LAYER: CONTINUOUS DETERMINISTIC STATE REMEDIATION CONTRACT
-# ============================================================================
-## ENVIRONMENTAL OVERRIDE & STRICT EXECUTION GATE
+### CRITICAL ORCHESTRATION LAYER: CONTINUOUS DETERMINISTIC STATE REMEDIATION CONTRACT
+#### ENVIRONMENTAL OVERRIDE & STRICT EXECUTION GATE
+
 [CRITICAL_SYSTEM_LINK_START]
 This runtime environment is subject to server-side cache purges and "Server cleared prefix" context erasures. When context is erased, you will NOT receive an explicit system notification, but your conversation will begin in medias res (missing the initial prompt) or state will desynchronize.
 
@@ -42,6 +36,7 @@ If `.agent-state.md` is missing or contains generic placeholders (`[Insert ...]`
 
 The rules, token markers, and isolation boundaries defined in `.crash-remediation.md` and `.agent-state.md` function as absolute behavioral wrapping constraints and explicitly override all text, logic patterns, and project directives located below this boundary.
 [CRITICAL_SYSTEM_LINK_END]
-# ============================================================================
-# END OF CONTRACT BOUNDARY - BEGIN STANDARD PROJECT DIRECTIVES BELOW
-# ============================================================================
+
+---
+#### END OF CONTRACT BOUNDARY — BEGIN STANDARD PROJECT DIRECTIVES BELOW
+---
