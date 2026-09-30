@@ -57,7 +57,7 @@ flowchart TD
 Before adding this guard to your workflow, consider your project requirements:
 
 * **Recommended if:** You are working on long-running, multi-hour projects, complex refactors, or deep autonomous milestones where losing initial context leads to costly regressions and model drift.
-* **Not necessary if:** You are doing exploratory coding, single-file scripts, or fast iterative tasks where high velocity is preferred over strict verification gates.
+* **Not necessary if:** You are doing exploratory coding, single-file scripts, or fast iterative tasks where high velocity is preferred.
 
 ---
 
