@@ -34,13 +34,15 @@ This system transforms prompt-based state tracking from passive suggestions into
 
 ```mermaid
 flowchart TD
-    A["Agent Pre-Action Check"] --> B{"Is Target File &amp; Task Logged in .agent-state.md?"}
-    B -->|"No"| C["MUTATION BLOCKED: Update .agent-state.md First"]
+    A["Agent Pre-Action Check"] --> B{"Is Target File & Task Logged in .agent-state.md?"}
+    B -->|"No"| C["Synchronise: open [~], create backup, register in §4"]
+    C --> D
     B -->|"Yes"| D{"Server Purge / In Medias Res Detected?"}
     D -->|"Yes / Prompt contains SYNC"| E["HALT: Run [RECOVERY_PROTOCOL_START]"]
-    E --> F["Audit Disk State &amp; Restore from .agent-backup/ or Git"]
-    F --> G["Print Telemetry &amp; Resume Locked Task"]
-    D -->|"No"| H["Execute Mutation &amp; Log State Transition"]
+    E --> F["Audit Disk State & Restore from .agent-backup/ or Git"]
+    F --> G["Print Telemetry & Resume Locked Task"]
+    G --> H
+    D -->|"No"| H["Execute Mutation & Log State Transition"]
 ```
 
 ### Core Components
@@ -49,6 +51,34 @@ flowchart TD
 | **[`GEMINI.md`](GEMINI.md)** | **Continuous Execution Gate**: Enforces that the agent is strictly prohibited from calling code mutation tools (`replace_file_content`, `write_to_file`) or build commands unless actively synchronized with `.agent-state.md`. |
 | **[`.crash-remediation.md`](.crash-remediation.md)** | **Purge Remediation Engine**: Detects server-side context purges via concrete *in medias res* conversation heuristics, manages atomic initialization, and conducts physical workspace integrity audits. |
 | **[`.agent-state.md`](.agent-state.md)** | **External State Ledger**: Maintains immutable context fences, atomic milestones (`[x]`, `[~]`, `[ ]`), and lightweight references to disk backups (`.agent-backup/`) without burning prompt tokens. |
+
+---
+
+## 🚫 The Gate Is Not a Stopping Authority
+
+A state guard protects against *unsafe* edits. It must never become a mechanism for **not editing at all** — and in practice that is the failure mode it is most likely to cause, because "the ledger does not authorise this yet" sounds like a legitimate technical constraint.
+
+Four invariants close that route. They are part of the drop-in contract, not optional guidance:
+
+| Invariant | What it forbids |
+| :--- | :--- |
+| **1 — Pre-mutation gate** | Mutating without registering the target and holding a restore path. |
+| **2 — Autonomous recovery** | Continuing to mutate after a context purge or state drift. |
+| **3 — Gate is not a stopping authority** | Reporting registration, backup creation, file creation or an unopened milestone as a blocker. The remedy is to perform the synchronisation write and continue **in the same turn**. |
+| **4 — Report is not completion** | Treating a telemetry block, status summary, or candid list of remaining work as a deliverable or a turn ending. |
+
+### Worked example: how it fails without them
+
+A session was asked to audit and modernise an entire host. It enumerated part of the estate, produced real findings, and then closed with a section headed *"What is not done"* listing the unfinished scope — describing the gate as a **"structural rather than effort-based"** blocker, and describing its own coverage as **"roughly four-fifths through."**
+
+Every element of that report was a guard-system artefact:
+
+- the real blocker was *registering files in `§4`* and *an empty `.agent-backup/`* — both satisfiable in four routine tool calls, and for a newly created file the contract requires no backup at all (`[NEW_FILE_CREATION]`);
+- the §2 milestone was still `[ ]` (unstarted) and read as *nothing is authorised* rather than *open one*;
+- the coverage fraction was reported as a state, and the denominator was already known — so the remainder was bounded and could have been finished;
+- an honest gap list was offered in place of the work.
+
+Invariants 3 and 4 exist because of exactly that session. The lesson generalises: **a precondition the agent can satisfy with its own tools is a procedure, never a permission.**
 
 ---
 
